@@ -1,0 +1,17 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Xem Ngày Tốt – theo âm lịch</title><meta name="description" content="Chọn việc cưới hỏi, khai trương, chuyển nhà và khoảng ngày, app liệt kê ngày đẹp, ngày nên tránh theo lịch âm.">
+<link rel="stylesheet" href="style.css"></head><body><main>
+<header><div class="logo">📅</div><h1>Xem Ngày Tốt</h1><p>Chọn ngày đẹp theo lịch âm cho việc lớn trong nhà</p></header>
+<section class="form">
+ <label>Bạn định làm việc gì?</label>
+ <div class="viec"><button data-v="cuoi">💍<b>Cưới hỏi</b></button><button data-v="khaitruong">🏪<b>Khai trương</b></button><button data-v="chuyennha">🏠<b>Chuyển nhà</b></button></div>
+ <p id="moTa" class="mota"></p>
+ <div class="hai"><div><label>Từ ngày</label><input type="date" id="tu"></div><div><label>Đến ngày</label><input type="date" id="den"></div></div>
+ <div class="hai"><div><label id="lb1">Năm sinh</label><input id="y1" type="number" inputmode="numeric" placeholder="vd 1996"></div>
+ <div id="row2"><label>Năm sinh cô dâu</label><input id="y2" type="number" inputmode="numeric" placeholder="vd 1998"></div></div>
+ <p class="goiy">Năm sinh tính theo âm lịch: ai sinh tháng 1, đầu tháng 2 dương lịch (trước Tết) thì lấy năm trước.</p>
+ <button id="xem" class="chinh">Xem ngày tốt ✨</button><button id="mau" class="phu">Thử với ví dụ</button>
+</section>
+<section id="kq"></section>
+<footer>Tham khảo, giải trí · Lịch âm tính theo giờ Việt Nam · Làm bởi Việt Phan</footer>
+</main><script src="lunar.js"></script><script src="content.js"></script><script src="app.js"></script></body></html>
