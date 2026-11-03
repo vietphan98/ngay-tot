@@ -22,12 +22,12 @@
     return L.map(p => ({ ...p, chi: A.yearChi(p.y), ten: A.yearCanChi(p.y) }));
   }
   function cham(d, P) {
-    const V = N.viec[viec]; let s = 50; const tot = [], xau = [];
+    const V = N.viec[viec]; let s = 50; const tot = [], xau = [], luu = [];
     if (d.hoangDao) { s += 20; tot.push('Ngày hoàng đạo – ' + N.than[d.thanTen]); } else { s -= 15; xau.push('Ngày hắc đạo – ' + N.than[d.thanTen]); }
     const ti = V.trucTot.indexOf(d.truc);
     if (ti >= 0) { s += 22 - ti * 3; tot.push('Trực ' + d.trucTen + ': ' + N.truc[d.truc]); }
     else if (V.trucXau.includes(d.truc)) { s -= 25; xau.push('Trực ' + d.trucTen + ': ' + N.truc[d.truc]); }
-    else (s += 0, (d.truc === 3 ? tot : xau).push('Trực ' + d.trucTen + ': ' + N.truc[d.truc]));
+    else luu.push('Trực ' + d.trucTen + ': ' + N.truc[d.truc]);
     const ld = d.lunar.day;
     if ([3, 7, 13, 18, 22, 27].includes(ld)) { s -= 20; xau.push(N.tamNuong); }
     if ([5, 14, 23].includes(ld)) { s -= 15; xau.push(N.nguyetKy); }
@@ -38,8 +38,8 @@
       else if ((d.chi + p.chi) % 12 === 1 || (r && d.chi % 4 === p.chi % 4)) { s += 8; tot.push(N.hop.replace('{ten}', p.ten + ' (' + p.ai + ')')); }
     }
     s = Math.max(0, Math.min(100, s));
-    const muc = s >= 75 ? 'tot' : s >= 50 ? 'kha' : 'xau';
-    return { s, muc, tot, xau, cau: N.ket[muc][d.lunar.jd % N.ket[muc].length] };
+    const muc = s >= 80 ? 'tot' : s >= 50 ? 'kha' : 'xau';
+    return { s, muc, tot, xau, luu, cau: N.ket[muc][d.lunar.jd % N.ket[muc].length] };
   }
   function xem() {
     const P = nguoi(); let a = new Date($('#tu').value), b = new Date($('#den').value);
@@ -59,7 +59,7 @@
         <div class="tt"><b>${d.thu}, ${pad(d.dd)}/${pad(d.mm)}/${d.yy}</b><span>Âm lịch ${L.day}/${L.month}${L.leap ? ' (nhuận)' : ''} · ngày ${d.canChi} · năm ${d.namCanChi}</span></div>
         <div class="diem"><i>${k.s}</i><small>điểm</small></div></div>
       <p class="cau">${k.cau}</p>
-      ${k.tot.map(x => `<p class="ok">✔ ${x}</p>`).join('')}${k.xau.map(x => `<p class="ko">✖ ${x}</p>`).join('')}
+      ${k.tot.map(x => `<p class="ok">✔ ${x}</p>`).join('')}${k.luu.map(x => `<p class="luu">• ${x}</p>`).join('')}${k.xau.map(x => `<p class="ko">✖ ${x}</p>`).join('')}
       ${k.muc !== 'xau' ? `<p class="gio">🕐 Giờ đẹp: ${d.gioTot.join(', ')}</p>` : ''}</div>`;
   }
   function ve(R, P) {
